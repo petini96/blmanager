@@ -1,0 +1,58 @@
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: bolerada67
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: America/Campo_Grande
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    networks:
+      - default
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  redis:
+    image: redis:latest
+    container_name: redis-bolerada
+    hostname: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --appendonly yes --loglevel debug --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    networks:
+      - default
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  rabbitmq:
+    image: 'rabbitmq:latest'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=secret'
+      - 'RABBITMQ_DEFAULT_USER=myuser'
+    ports:
+      - '5672'
+      
+volumes:
+  redis:
+    driver: local
+  postgresql:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
