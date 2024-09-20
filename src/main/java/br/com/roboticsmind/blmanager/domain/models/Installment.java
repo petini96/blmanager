@@ -1,4 +1,4 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

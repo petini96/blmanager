@@ -1,6 +1,6 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,21 +19,23 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClientPurchase {
+public class InstallmentPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_sku_id", nullable = false)
-    private ProductSku productSku;
+    @Column(name = "total_value", nullable = false, precision = 15, scale = 2)
+    private BigDecimal totalValue;
+
+    @Column(name = "total_installments", nullable = false)
+    private int totalInstallments;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    @Column(name = "status", nullable = false, length = 50)
+    private String status;
 
 }

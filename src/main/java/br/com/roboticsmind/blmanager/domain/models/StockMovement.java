@@ -1,4 +1,4 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

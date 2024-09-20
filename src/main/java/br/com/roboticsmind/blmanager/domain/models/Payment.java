@@ -1,4 +1,6 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
+
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,20 +19,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Stock {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date", nullable = false)
+    private LocalDateTime date;
+
     @ManyToOne
-    @JoinColumn(name = "product_sku_id", nullable = false)
-    private ProductSku productSku;
-
-    @Column(name = "quantity", nullable = false)
-    private int quantity;
-
-    @Column(name = "name", nullable = false)
-    private String name;
+    @JoinColumn(name = "transaction_id", nullable = false)
+    private Transaction transaction;
 
 }

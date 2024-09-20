@@ -1,4 +1,4 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

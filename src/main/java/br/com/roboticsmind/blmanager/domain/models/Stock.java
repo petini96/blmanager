@@ -1,4 +1,4 @@
-package br.com.roboticsmind.blmanager.models;
+package br.com.roboticsmind.blmanager.domain.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SupplyItem {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +27,10 @@ public class SupplyItem {
     @JoinColumn(name = "product_sku_id", nullable = false)
     private ProductSku productSku;
 
-    @ManyToOne
-    @JoinColumn(name = "supply_id", nullable = false)
-    private Supply supply;
-
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "defect", nullable = false)
-    private boolean defect;
+    @Column(name = "name", nullable = false)
+    private String name;
 
 }
